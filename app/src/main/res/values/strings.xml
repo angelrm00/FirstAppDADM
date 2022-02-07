@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">FirstAppDADM</string>
+    <string name="app_name">Quotation Shake</string>
+    <string name="random_quotations">Random quotations</string>
+    <string name="favourite_quotations">Favourite quotations</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
 </resources>

@@ -1,7 +1,30 @@
 <resources>
-    <string name="app_name">Quotation Shake</string>
+    <string name="app_name" translatable="false">Quotation Shake</string>
     <string name="random_quotations">Random quotations</string>
     <string name="favourite_quotations">Favourite quotations</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
+
+    <!-- About -->
+    <string name="infoApp">Quotation Shake by\n\nAngel Romero Molina\n\nanromo1@inf.upv.es\n\nDeveloped for DADM 2022</string>
+
+    <!-- Settings -->
+    <string name="nameIndentifiesUser">Name that identifies the user</string>
+    <string name="insertName">Insert your name</string>
+    <string name="quotationsSelectedLanguage">Get quotations in the selected language</string>
+    <string name="requestQuotationsHTTPMethod">Request quotations using the selected HTTP method</string>
+    <string name="get" translatable="false">GET</string>
+    <string name="post" translatable="false">POST</string>
+
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+
+    <!-- Favourite Quotations -->
+    <string name="authorInfo">Author info</string>
+
+    <!-- Random Quotations -->
+    <string name="welcomeMessage">Hello %1s! Press Refresh to get a new quotation</string>
+    <string name="sampleQuotation">This is a sample quotation</string>
+    <string name="sampleAutor">Sample autor</string>
+    <string name="refreshButton">Refresh button</string>
 </resources>

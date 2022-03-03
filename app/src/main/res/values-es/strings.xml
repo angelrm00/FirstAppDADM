@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="random_quotations">Citas aleatorias</string>
+    <string name="favourite_quotations">Citas favoritas</string>
+    <string name="settings">Ajustes</string>
+    <string name="about">Información</string>
+    <string name="infoApp" tools:ignore="Typos">Quotation Shake por\n\nAngel Romero Molina\n\nanromo1@inf.upv.es\n\nDesarrollado para DADM 2022</string>
+    <string name="nameIndentifiesUser">Nombre que identifique al usuario</string>
+    <string name="insertName">Introduzca su nombre</string>
+    <string name="quotationsSelectedLanguage">Obtener citas en el idioma seleccionado</string>
+    <string name="requestQuotationsHTTPMethod">Obtener citas haciendo uso del método HTTP seleccionado</string>
+    <string name="authorInfo">Información del autor</string>
+    <string name="welcomeMessage">¡Hola %1s! Presione Actualizar para obtener una nueva cita</string>
+    <string name="sampleQuotation">Esto es una cita de ejemplo</string>
+    <string name="sampleAutor">Autor de ejemplo</string>
+    <string name="refreshButton">Botón de actualizar</string>
+    <string name="english">Inglés</string>
+    <string name="spanish">Español</string>
+</resources>

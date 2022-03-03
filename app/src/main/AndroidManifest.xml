@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.firstappdadm">
-
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
+        </intent>
+    </queries>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +14,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstAppDADM">
+        <activity
+            android:name=".QuotationActivity"
+            android:exported="false"
+            android:label="@string/random_quotations"/>
+        <activity
+            android:name=".FavouriteActivity"
+            android:exported="false"
+            android:label="@string/favourite_quotations" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:label="@string/about" />
         <activity
             android:name=".DashboardActivity"
             android:exported="true">

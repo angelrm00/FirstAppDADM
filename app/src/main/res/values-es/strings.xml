@@ -11,9 +11,22 @@
     <string name="requestQuotationsHTTPMethod">Obtener citas haciendo uso del método HTTP seleccionado</string>
     <string name="authorInfo">Información del autor</string>
     <string name="welcomeMessage">¡Hola %1s! Presione Actualizar para obtener una nueva cita</string>
-    <string name="sampleQuotation">Esto es una cita de ejemplo</string>
-    <string name="sampleAutor">Autor de ejemplo</string>
-    <string name="refreshButton">Botón de actualizar</string>
+    <string name="sampleQuotation">Cita de ejemplo %1sd</string>
+    <string name="sampleAutor">Autor de ejemplo %1sd</string>
     <string name="english">Inglés</string>
     <string name="spanish">Español</string>
+    <string name="add">Añadir</string>
+    <string name="refresh">Refrescar</string>
+    <string name="clearAll">Borrar TODO</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirmClearAllDialogMessage">¿Está seguro de que quiere eliminar TODAS sus citas favoritas?</string>
+    <string name="settings_textfield_username_title">Campo de texto del nombre del usuario</string>
+    <string name="settings_textfield_username_description">Campo de texto utilizado para especificar el nombre del usuario</string>
+    <string name="settings_cattegory_httpmethods_title">Categoría de métodos HTTP</string>
+    <string name="settings_cattegory_httpmethods_description">Categoría con los diferentes métodos http a usar para solicitar nuevas citas</string>
+    <string name="author_impossible_not_possible_info">El autor es anónimo. La información del autor no está disponible.</string>
+    <string name="confirmDeleteDialog">¿Está seguro de que quiere eliminar esta cita?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    !-- Base application theme. -->
+    <style name="CustomAppTheme.Settings">
+        <!-- Customize your theme here. -->
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textSize">@dimen/SettingsTextSize</item>
+    </style>
+
+    <style name="CustomAppTheme" parent="Theme.AppCompat.Light">
+
+    </style>
+
+</resources>

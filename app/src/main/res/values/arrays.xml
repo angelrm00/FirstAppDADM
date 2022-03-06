@@ -8,4 +8,19 @@
             @string/spanish
         </item>
     </array>
+
+    <array name="languagesCodes">
+        <item>en</item>
+        <item>es</item>
+    </array>
+
+    <array name="httpmethods">
+        <item>@string/get</item>
+        <item>@string/post</item>
+    </array>
+
+    <array name="httpmethodsCodes">
+        <item>get</item>
+        <item>post</item>
+    </array>
 </resources>

@@ -19,12 +19,28 @@
     <string name="english">English</string>
     <string name="spanish">Spanish</string>
 
+    <string name="settings_textfield_username_title">Textfield username</string>
+    <string name="settings_textfield_username_description">Textfield used to specify the user\'s name</string>
+    <string name="settings_cattegory_httpmethods_title">Cattegory of HTTP methods</string>
+    <string name="settings_cattegory_httpmethods_description">Cattegory with different http methods to use when we request a new quote</string>
+
     <!-- Favourite Quotations -->
     <string name="authorInfo">Author info</string>
+    <string name="mockQuotation" translatable="false">This is a Mock Quotation for testing. Mock number</string>
+    <string name="clearAll">Clear All</string>
+
+    <string name="confirmClearAllDialogMessage">Are you sure that you want to delete ALL your favourite quotations?</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="author_impossible_not_possible_info">The author is anonymous. Author info is not available.</string>
+    <string name="confirmDeleteDialog">Are you sure that you want to delete this quotation?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- Random Quotations -->
     <string name="welcomeMessage">Hello %1s! Press Refresh to get a new quotation</string>
-    <string name="sampleQuotation">This is a sample quotation</string>
-    <string name="sampleAutor">Sample autor</string>
-    <string name="refreshButton">Refresh button</string>
+    <string name="sampleQuotation">Sample quotation %1sd</string>
+    <string name="sampleAutor">Sample autor %1sd</string>
+    <string name="add">Add</string>
+    <string name="refresh">Refresh</string>
 </resources>

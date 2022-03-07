@@ -1,16 +1,12 @@
 package com.example.firstappdadm.utility;
 
-import android.util.Log;
-
 import androidx.annotation.Nullable;
-import androidx.preference.PreferenceManager;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.example.firstappdadm.FavouriteActivity;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;

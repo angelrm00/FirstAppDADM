@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="SettingsTextSize">20sp</dimen>
-    <dimen name="GeneralTextSize">18sp</dimen>
+    <dimen name="GeneralTextSize">15sp</dimen>
     <dimen name="QuotesTextSize">22sp</dimen>
 </resources>

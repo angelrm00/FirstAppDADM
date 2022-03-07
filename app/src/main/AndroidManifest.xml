@@ -18,30 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/CustomAppTheme">
         <activity
-            android:name=".QuotationActivity"
-            android:exported="false"
-            android:label="@string/random_quotations"
-            android:parentActivityName=".DashboardActivity"
-            />
-        <activity
-            android:name=".FavouriteActivity"
-            android:exported="false"
-            android:label="@string/favourite_quotations"
-            android:parentActivityName=".DashboardActivity"
-            />
-        <activity
-            android:name=".SettingsActivity"
-            android:exported="false"
-            android:label="@string/settings"
-            android:theme="@style/CustomAppTheme.Settings"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:parentActivityName=".DashboardActivity"/>
-        <activity
-            android:name=".AboutActivity"
-            android:exported="false"
-            android:label="@string/about"
-            android:parentActivityName=".DashboardActivity"/>
-        <activity
             android:name=".DashboardActivity"
             android:exported="true">
             <intent-filter>

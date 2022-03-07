@@ -6,7 +6,7 @@
         <item name="android:textSize">@dimen/SettingsTextSize</item>
     </style>
 
-    <style name="CustomAppTheme" parent="Theme.AppCompat.Light">
+    <style name="CustomAppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
         <item name="android:textSize">@dimen/GeneralTextSize</item>
     </style>

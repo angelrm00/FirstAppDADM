@@ -17,7 +17,7 @@ public abstract class QuotationRoomDatabase extends RoomDatabase {
         if(qrd == null) {
             qrd = Room.databaseBuilder(context,
                     QuotationRoomDatabase.class,
-                    "quotation_db").allowMainThreadQueries().build();
+                    "quotation_db").build();
         }
         return qrd;
     }

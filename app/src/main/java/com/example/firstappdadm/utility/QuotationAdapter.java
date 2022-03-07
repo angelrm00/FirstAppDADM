@@ -13,7 +13,7 @@ import com.example.firstappdadm.R;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.ViewHolder> implements OnItemClickListener {
+public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.ViewHolder> {
 
     private List<Quotation> listQuotes;
     private OnItemClickListener onItemClickListener;
@@ -45,10 +45,6 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.View
         return listQuotes.size();
     }
 
-    @Override
-    public void onItemClick(Quotation quotation) {
-
-    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textviewQuote;
@@ -56,18 +52,25 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.View
 
         ViewHolder(View v) {
             super(v);
-            textviewAuthor = v.findViewById(R.id.itemQuote);
-            textviewQuote = v.findViewById(R.id.itemAuthor);
+            textviewQuote = v.findViewById(R.id.itemQuote);
+            textviewAuthor = v.findViewById(R.id.itemAuthor);
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
                         onItemClickListener.onItemClick(getAdapterPosition());
-                        onItemLongClickListener.onItemLongClick(getAdapterPosition());
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
+                }
+            });
+
+            v.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onItemLongClickListener.onItemLongClick(getAdapterPosition());
+                    return true;
                 }
             });
         }
@@ -92,5 +95,11 @@ public class QuotationAdapter extends RecyclerView.Adapter<QuotationAdapter.View
     public void removeQuotationAt(int position) {
         listQuotes.remove(position);
         notifyItemRemoved(position);
+    }
+
+    public void addQuote(List<Quotation> quotes) {
+        listQuotes.addAll(quotes);
+        notifyItemRangeInserted(getItemCount(),
+                quotes.size());
     }
 }

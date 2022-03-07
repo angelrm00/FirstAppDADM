@@ -10,11 +10,13 @@
     <PreferenceCategory>
 
         <ListPreference
+            android:defaultValue="en"
             android:entries="@array/languages"
             android:entryValues="@array/languagesCodes"
             android:key="language"
             android:title="@string/quotationsSelectedLanguage" />
         <ListPreference
+            android:defaultValue="get"
             android:entries="@array/httpmethods"
             android:entryValues="@array/httpmethodsCodes"
             android:key="httpmethod"

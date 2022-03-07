@@ -5,13 +5,13 @@
             @string/english
         </item>
         <item>
-            @string/spanish
+            @string/russian
         </item>
     </array>
 
     <array name="languagesCodes">
         <item>en</item>
-        <item>es</item>
+        <item>ru</item>
     </array>
 
     <array name="httpmethods">

@@ -22,6 +22,7 @@ import com.example.firstappdadm.utility.Quotation;
 import com.example.firstappdadm.utility.QuotationAdapter;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,20 +38,8 @@ public class FavouriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite);
-
-        /*findViewById(R.id.authorInfoButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://en.wikipedia.org/wiki/Special:Search?search=" + "Albert Einstein"));
-                if (intent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(intent);
-                }
-            }
-        });*/
         quotationDAO = QuotationRoomDatabase.getInstance(this).getDAO();
-        quotationAdapter = new QuotationAdapter(quotationDAO.getAllQuotes(), new QuotationAdapter.OnItemClickListener() {
+        quotationAdapter = new QuotationAdapter(new ArrayList<Quotation>(), new QuotationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 try {
@@ -70,19 +59,22 @@ public class FavouriteActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(quotationAdapter);
 
+        addQuotesToRecyclerView();
+
     }
 
-    public List<Quotation> getMockQuotations() {
-        List<Quotation> quotes = new ArrayList<>();
-        Quotation quotation = new Quotation();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //new RunnableFavourite(this).start();
+    }
 
-        for(int i = 1; i <= 10; i++) {
-            quotation.setQuote(getResources().getString(R.string.sampleQuotation) + " i");
-            quotation.setAuthor(getResources().getString(R.string.sampleAutor));
-            quotes.add(quotation);
-        }
+    private void addQuotesToRecyclerView() {
+        //List<Quotation> quotes = quotationDAO.getAllQuotes();
+        //quotationAdapter.addQuote(quotes);
 
-        return quotes;
+        new RunnableFavourite(this).start();
+
     }
 
     private void goToAuthorInfo(Quotation quote) throws UnsupportedEncodingException {
@@ -104,9 +96,15 @@ public class FavouriteActivity extends AppCompatActivity {
         dialog.setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                QuotationAdapter quotationAdapter = (QuotationAdapter) recyclerView.getAdapter();
-                quotationDAO.deleteQuote(quotationAdapter.getQuotationList().get(position));
+                Quotation quotationToErase = quotationAdapter.getQuotationList().get(position);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        quotationDAO.deleteQuote(quotationToErase);
+                    }
+                }).start();
                 quotationAdapter.removeQuotationAt(position);
+
                 clearItem.setVisible(quotationAdapter.getItemCount() > 0);
             }
         });
@@ -135,10 +133,7 @@ public class FavouriteActivity extends AppCompatActivity {
                 dialog.setPositiveButton(getResources().getString(R.string.confirm), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        quotationDAO.deleteAllQuotes();
-                        QuotationAdapter quotationAdapter = (QuotationAdapter) recyclerView.getAdapter();
-                        quotationAdapter.clearAllFavourites();
-                        clearItem.setVisible(false);
+                        deleteAllQuotes();
                     }
                 });
                 dialog.setNegativeButton(getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -151,6 +146,44 @@ public class FavouriteActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
+        }
+    }
+
+    private void deleteAllQuotes() {
+        QuotationAdapter quotationAdapter = (QuotationAdapter) recyclerView.getAdapter();
+        quotationAdapter.clearAllFavourites();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                quotationDAO.deleteAllQuotes();
+            }
+        }).start();
+        clearItem.setVisible(false);
+    }
+
+    private class RunnableFavourite extends Thread {
+        private WeakReference<FavouriteActivity> favReference;
+
+        RunnableFavourite(FavouriteActivity favouriteActivity) {
+            favReference = new WeakReference<>(favouriteActivity);
+
+        }
+        @Override
+        public void run() {
+            super.run();
+
+            List<Quotation> quotes = getFavouriteActivity().quotationDAO.getAllQuotes();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    getFavouriteActivity().quotationAdapter.addQuote(quotes);
+                }
+            });
+
+        }
+
+        public FavouriteActivity getFavouriteActivity() {
+            return favReference.get();
         }
     }
 }

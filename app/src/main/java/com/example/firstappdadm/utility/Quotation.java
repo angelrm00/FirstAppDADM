@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 @Entity(tableName = "quotation_db")
 public class Quotation {
     @PrimaryKey(autoGenerate = true)
@@ -12,7 +14,9 @@ public class Quotation {
     private int id;
     @ColumnInfo(name = "quote")
     @NonNull
+    @SerializedName("quoteText")
     private String quote;
+    @SerializedName("quoteAuthor")
     @ColumnInfo(name = "author")
     private String author;
 

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.firstappdadm">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW"/>
@@ -18,12 +21,14 @@
             android:name=".QuotationActivity"
             android:exported="false"
             android:label="@string/random_quotations"
-            android:parentActivityName=".DashboardActivity"/>
+            android:parentActivityName=".DashboardActivity"
+            />
         <activity
             android:name=".FavouriteActivity"
             android:exported="false"
             android:label="@string/favourite_quotations"
-            android:parentActivityName=".DashboardActivity"/>
+            android:parentActivityName=".DashboardActivity"
+            />
         <activity
             android:name=".SettingsActivity"
             android:exported="false"

@@ -18,11 +18,13 @@
 
     <string name="english">English</string>
     <string name="spanish">Spanish</string>
+    <string name="russian">Russian</string>
 
     <string name="settings_textfield_username_title">Textfield username</string>
     <string name="settings_textfield_username_description">Textfield used to specify the user\'s name</string>
     <string name="settings_cattegory_httpmethods_title">Cattegory of HTTP methods</string>
     <string name="settings_cattegory_httpmethods_description">Cattegory with different http methods to use when we request a new quote</string>
+    <string name="unable_get_quote">Unable to get a new quote. Please, try again!</string>
 
     <!-- Favourite Quotations -->
     <string name="authorInfo">Author info</string>
@@ -43,4 +45,5 @@
     <string name="sampleAutor">Sample autor %1sd</string>
     <string name="add">Add</string>
     <string name="refresh">Refresh</string>
+    <string name="device_not_connected">The device is not connected to the Internet. Unable to get new quotes.</string>
 </resources>

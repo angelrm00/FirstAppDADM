@@ -32,4 +32,6 @@
     <string name="unable_get_quote">No fue posible obtener una nueva cita. Por favor, ¡inténtelo de nuevo!</string>
     <string name="device_not_connected">El dispositivo no está conectado a Internet. No es posible recibir nuevas citas.</string>
     <string name="russian">Ruso</string>
+    <string name="quote_deleted">La cita ha sido eliminada</string>
+    <string name="undo">Deshacer</string>
 </resources>

@@ -10,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -52,6 +54,8 @@ public class FavouriteFragment extends Fragment {
 
     private CoordinatorLayout coordinator;
 
+    private ItemTouchHelper touchHelper;
+
     public FavouriteFragment() {
 
     }
@@ -87,7 +91,7 @@ public class FavouriteFragment extends Fragment {
 
         getActivity().invalidateOptionsMenu();
         setHasOptionsMenu(true);
-        fragmentManager = getChildFragmentManager();
+        fragmentManager = getActivity().getSupportFragmentManager();
         fragmentManager.setFragmentResultListener("remove_all", getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
@@ -97,6 +101,33 @@ public class FavouriteFragment extends Fragment {
 
         coordinator = mainView.findViewById(R.id.coordinatorFavourite);
 
+        touchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                return makeMovementFlags(ItemTouchHelper.ACTION_STATE_IDLE, ItemTouchHelper.RIGHT) | makeMovementFlags(ItemTouchHelper.ACTION_STATE_SWIPE, ItemTouchHelper.RIGHT);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                deleteSelectedQuotationSwipe(viewHolder.getAdapterPosition());
+            }
+
+            @Override
+            public boolean isItemViewSwipeEnabled() {
+                return true;
+            }
+
+            @Override
+            public boolean isLongPressDragEnabled() {
+                return false;
+            }
+        });
+        touchHelper.attachToRecyclerView(recyclerView);
         return mainView;
     }
 
@@ -161,12 +192,42 @@ public class FavouriteFragment extends Fragment {
         });
         dialog.show();
     }
+
+    private void deleteSelectedQuotationSwipe(int position){
+        Quotation quotationToErase = quotationAdapter.getQuotationList().get(position);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                quotationDAO.deleteQuote(quotationToErase);
+            }
+        }).start();
+        quotationAdapter.removeQuotationAt(position);
+
+        clearItem.setVisible(quotationAdapter.getItemCount() > 0);
+
+        Snackbar snack = Snackbar.make(coordinator, getResources().getString(R.string.quote_deleted), Snackbar.LENGTH_LONG);
+        snack.setAction(getResources().getString(R.string.undo), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        quotationDAO.addQuote(quotationToErase);
+                    }
+                }).start();
+                List<Quotation> quotes = new ArrayList<>();
+                quotes.add(quotationToErase);
+                quotationAdapter.addQuote(quotes);
+            }
+        });
+        snack.show();
+    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
         menuInflater.inflate(R.menu.favourite_menu, menu);
         clearItem = menu.findItem(R.id.clearAllAction);
         boolean visible = quotationAdapter.getQuotationList().size() > 0;
-        //clearItem.setVisible(visible);
+        clearItem.setVisible(visible);
     }
 
     @Override
@@ -174,6 +235,8 @@ public class FavouriteFragment extends Fragment {
         switch(menuItem.getItemId()) {
             case R.id.clearAllAction:
                 //FavouriteDialogFragment;
+                //(new FavouriteDialogFragment()).show(getActivity().getSupportFragmentManager(), null);
+                return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
@@ -227,7 +290,7 @@ public class FavouriteFragment extends Fragment {
         @Override
         public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
 
-            new MaterialAlertDialogBuilder(mainView.getContext(), R.style.CustomAppTheme).setMessage(getResources().getString(R.string.confirmClearAllDialogMessage))
+            AlertDialog a = new AlertDialog.Builder(mainView.getContext(), R.style.CustomAppTheme).setMessage(getResources().getString(R.string.confirmClearAllDialogMessage))
             .setPositiveButton(getResources().getString(R.string.confirm),new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -239,6 +302,8 @@ public class FavouriteFragment extends Fragment {
 
                 }
             }).show();
+
+            a.create();
 
             return super.onCreateDialog(savedInstanceState);
             /*

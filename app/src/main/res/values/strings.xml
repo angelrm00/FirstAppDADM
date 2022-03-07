@@ -38,6 +38,8 @@
     <string name="confirmDeleteDialog">Are you sure that you want to delete this quotation?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="quote_deleted">Quotation has been deleted.</string>
+    <string name="undo">Undo</string>
 
     <!-- Random Quotations -->
     <string name="welcomeMessage">Hello %1s! Press Refresh to get a new quotation</string>
